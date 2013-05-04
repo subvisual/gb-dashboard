@@ -1,3 +1,15 @@
+GIT
+  remote: git://github.com/groupbuddies/toggl.git
+  revision: 0ac77c93e47ad86778a4be14ace3ddc5c3a74e2b
+  specs:
+    toggl (0.3.0)
+      chronic_duration
+      chronic_duration (>= 0.9.0)
+      hirb
+      hirb (>= 0.3.1)
+      httparty
+      httparty (>= 0.8.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -10,6 +22,8 @@ GEM
     addressable (2.3.4)
     backports (3.3.0)
     builder (3.0.4)
+    chronic_duration (0.10.2)
+      numerizer (~> 0.1.1)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
@@ -30,10 +44,16 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     hike (1.2.2)
+    hirb (0.7.1)
+    httparty (0.11.0)
+      multi_json (~> 1.0)
+      multi_xml (>= 0.5.2)
     i18n (0.6.1)
     json (1.7.7)
     mime-types (1.23)
     multi_json (1.7.2)
+    multi_xml (0.5.3)
+    numerizer (0.1.1)
     oauth (0.4.7)
     rack (1.5.2)
     rack-protection (1.5.0)
@@ -90,3 +110,4 @@ DEPENDENCIES
   dashing
   rspec
   ruby-trello
+  toggl!
