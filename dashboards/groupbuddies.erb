@@ -1,0 +1,19 @@
+<script type='text/javascript'>
+  $(function() {
+    Dashing.gridsterLayout('[{"col":1,"row":1},{"col":2,"row":1}]')
+  });
+</script>
+
+<% content_for(:title) { "Group Buddies Overview" } %>
+<div class="gridster">
+  <ul>
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="0.5">
+      <div data-id="coachme-staging" data-view="Number" data-title="Cards in Staging (CoachMe)"></div>
+    </li>
+
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+      <div data-id="twitter_mentions" data-view="Comments" style="background-color:#ff9618;" data-moreinfo="Tweets mentioning groupbuddies"></div>
+      <i class="icon-twitter icon-background"></i>
+    </li>
+  </ul>
+</div>
