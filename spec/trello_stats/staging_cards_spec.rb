@@ -1,17 +1,34 @@
 require 'spec_helper'
+Action = Struct.new :attributes
 
 describe TrelloStats::StagingCardsCount do
-  context "#get_current_cards_number" do
-    it "fetches the cards from trello board" do
+  context "#gone_out" do
+    it "fetches the cards from trello board", slow: true do
       Trello::Member.should_receive(:find).with("zamith").and_call_original
 
-      staging_stat_instance.get_current_cards_number
+      staging_stat_instance.gone_out
     end
 
-    it "knows how many cards are at a given moment" do
-      staging_stat_instance.stub_chain(:staging_list, :cards).and_return([1,2,3])
+    it "knows how many cards have gone out into Launchpad" do
+      actions = [
+        Action.new({data:{"listAfter"=>{"name"=>"Launchpad"}}}),
+        Action.new({data:{"listAfter"=>{"name"=>"Launchpad"}}})
+      ]
+      staging_stat_instance.should_receive(:actions).and_return(actions)
 
-      staging_stat_instance.get_current_cards_number.should eq 3
+      staging_stat_instance.gone_out.should eq 2
+    end
+
+    it "only count the ones going to the Launchpad" do
+      actions = [
+        Action.new({data:{"listAfter"=>{"name"=>"Launchpad"}}}),
+        Action.new({data:{"listAfter"=>{"name"=>"Launchpad"}}}),
+        Action.new({data:{"listAfter"=>{"name"=>"Another List"}}}),
+        Action.new({data:{"listBefore"=>{"name"=>"Other List"}}})
+      ]
+      staging_stat_instance.should_receive(:actions).and_return(actions)
+
+      staging_stat_instance.gone_out.should eq 2
     end
   end
 

@@ -1,9 +1,18 @@
-current_no_cards_in_staging = 0
+class CardsDelta < Struct.new :out, :in
+  def go
+    self.out = TrelloStats::StagingCardsCount.new.gone_out
+    self.in = TrelloStats::StagingCardsCount.new.came_in
+    self.out - self.in
+  end
+end
 
-SCHEDULER.every '10m', :first_in => 0 do |job|
-  last_no_cards_in_staging = current_no_cards_in_staging
-  current_no_cards_in_staging = TrelloStats::StagingCardsCount.new.get_current_cards_number
+cards_delta = CardsDelta.new
+no_cards_in_staging_delta = cards_delta.go
 
-  send_event('coachme-staging', { current: current_no_cards_in_staging, last: last_no_cards_in_staging })
+SCHEDULER.every '30m', :first_in => 0 do |job|
+  last_no_cards_in_staging_delta = no_cards_in_staging_delta
+  no_cards_in_staging_delta = cards_delta.go
+
+  send_event('coachme-staging', { current: no_cards_in_staging_delta, last: last_no_cards_in_staging_delta })
 end
 
