@@ -20,7 +20,7 @@ module Github
           name: repo.name.titleize,
           open_prs_count: open_pull_requests(repo.name).size,
           last_pr_author: last_pr_author(repo.name),
-          master_status: false,
+          master_status: true,
           dev_status: false
         }
       end
