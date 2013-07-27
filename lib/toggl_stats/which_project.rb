@@ -1,4 +1,3 @@
-require 'pry'
 module TogglStats
   class WhichProject
     def workspace_users
