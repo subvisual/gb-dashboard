@@ -69,10 +69,13 @@ def duration(time)
   end
 end
 
-config_file = File.dirname(File.expand_path(__FILE__)) + '/../config/semaphore.yml'
-config = YAML::load(File.open(config_file))
+def load_config
+  config_file = File.dirname(File.expand_path(__FILE__)) + '/../config/semaphore.yml'
+  config = YAML::load(File.open(config_file))
+end
 
 SCHEDULER.every '2m', :first_in => 0  do
+  config = load_config
   unless config['projects'].empty?
     config['projects'].each do |data_id, project|
         send_event(data_id, { items: update_builds(project, config) })
