@@ -1,5 +1,6 @@
-SCHEDULER.every '5m', first_in: 0 do |job|
+current_projects = TogglStats::WhichProject.new.current_projects
+SCHEDULER.every '30s', first_in: 0 do |job|
   current_projects = TogglStats::WhichProject.new.current_projects
 
-  send_event('toggl', { projects: current_projects.to_json })
+  send_event('toggl', { projects: current_projects.values, members: current_projects.keys.map{|name| "/assets/members/#{name.downcase}.png"} })
 end

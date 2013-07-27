@@ -1,4 +1,8 @@
 <div id="projects-container">
-  <div id="members-row"></div>
-  <div id="projects-row"></div>
+  <div id="members-row">
+    <img class="member" data-foreach-item="members" data-bind-src="item">
+  </div>
+  <div id="projects-row">
+    <span class="project" data-foreach-item="projects" data-bind="item"></span>
+  </div>
 </div>
