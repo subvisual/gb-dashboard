@@ -1,11 +1,22 @@
 class Dashing.Projects extends Dashing.Widget
+
   ready: ->
-    @projectsRow = $(@node).find('#projects-row')
-    @membersRow = $(@node).find('#members-row')
-    @projects = JSON.parse @get('projects')
-    $.each @projects, (member, project) =>
-      @membersRow.append("<img class='member' src='/assets/members/#{member.toLowerCase()}.png'>")
-      @projectsRow.append("<div class='project'>#{project}</div>")
+    @setup()
+    @populateColumns @get('products')
 
   onData: (data) ->
-    @currentIndex = 0
+    @setup()
+    @membersColumn.empty()
+    @projectsColumn.empty()
+    @populateColumns data.projects
+
+  setup: ->
+    @projectsColumn = $(@node).find('#projects-row')
+    @membersColumn = $(@node).find('#members-row')
+
+  populateColumns: (projects) ->
+    @projects = JSON.parse projects
+    $.each @projects, (member, project) =>
+      @membersColumn.append("<img class='member' src='/assets/members/#{member.toLowerCase()}.png'>")
+      @projectsColumn.append("<div class='project'>#{project}</div>")
+
