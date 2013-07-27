@@ -1,0 +1,11 @@
+<h1 class="title">OctoStats</h1>
+
+<p>#PR: <span data-bind="total_prs"></span></p>
+
+<table class="list-nostyle repos-list">
+  <tr data-foreach-item="recent_repos">
+    <td class="name" data-bind="item.name"></td>
+    <td class="count" data-bind="item.open_prs_count"></td>
+    <td class="author" data-bind="item.last_pr_author"></td>
+  </tr>
+</table>

@@ -1,0 +1,21 @@
+$background-color:  pink;
+$value-color:       blue;
+
+$title-color:       rgba(255, 255, 255, 0.7);;
+$moreinfo-color:    rgba(255, 255, 255, 0.7);;
+
+.widget-github {
+
+  background-image: url(awesomesauce.gif);
+  color: yellow;
+
+  .repos-list {
+    .label {
+      text-align: right;
+    }
+
+    .value {
+
+    }
+  }
+}
