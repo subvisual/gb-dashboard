@@ -2,7 +2,7 @@ require 'pry'
 module TogglStats
   class WhichProject
     def workspace_users
-      $toggl_interface.users_for_workspace(workspace_id)#.map{|user| user["fullname"]}
+      $toggl_interface.users_for_workspace(workspace_id)
     end
 
     def current_projects
