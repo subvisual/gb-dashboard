@@ -1,0 +1,23 @@
+.slideshow {
+  position: relative;
+}
+
+.slideshow > div {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+.slideshow > div:first-child {
+  z-index: 1;
+}
+
+.slideshow .counter {
+  font-size: 0.7em;
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  z-index: 2;
+}
