@@ -3,6 +3,7 @@ module Github
     def initialize
       @client = $github_client
       @pull_requests = {}
+      @feature_branches = {}
     end
 
     def repos_count
@@ -14,11 +15,13 @@ module Github
     end
 
     def recent_repos
-      @recent_repos ||= repos[0..5].map do |repo|
+      @recent_repos ||= repos[0..6].map do |repo|
         {
           name: repo.name.titleize,
           open_prs_count: open_pull_requests(repo.name).size,
-          last_pr_author: last_pr_author(repo.name)
+          last_pr_author: last_pr_author(repo.name),
+          master_status: false,
+          dev_status: false
         }
       end
     end

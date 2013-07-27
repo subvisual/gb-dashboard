@@ -4,18 +4,18 @@ $value-color:       blue;
 $title-color:       rgba(255, 255, 255, 0.7);;
 $moreinfo-color:    rgba(255, 255, 255, 0.7);;
 
-.widget-github {
-
-  background-image: url(awesomesauce.gif);
-  color: yellow;
+.widget.widget-github {
+  vertical-align: top;
+  padding: 0;
 
   .repos-list {
     .name {
-      text-align: right;
+      text-align: left;
     }
 
-    .value {
+  }
 
-    }
+  .repo {
+    border: solid 1px #000;
   }
 }
