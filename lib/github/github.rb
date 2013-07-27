@@ -5,16 +5,16 @@ module Github
       @pull_requests = {}
     end
 
-    def total_repos
+    def repos_count
       repos.size
     end
 
-    def total_prs
-      repos.map { |repo| repo[:open_issues_count] }.sum
+    def total_pr_count
+      recent_repos.map { |repo| repo[:open_prs_count] }.inject(:+)
     end
 
     def recent_repos
-      repos[0..5].map do |repo|
+      @recent_repos ||= repos[0..5].map do |repo|
         {
           name: repo.name.titleize,
           open_prs_count: open_pull_requests(repo.name).size,
