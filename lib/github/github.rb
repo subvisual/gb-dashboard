@@ -26,7 +26,6 @@ module Github
       end
     end
 
-
     private
 
     attr_reader :client

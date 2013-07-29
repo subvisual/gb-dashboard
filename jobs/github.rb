@@ -1,4 +1,4 @@
-SCHEDULER.every '1m', :first_in => 0 do |job|
+SCHEDULER.every '10m', :first_in => 0 do |job|
   client = Github::Client.new
   data = {
     repos_count:     client.repos_count,
