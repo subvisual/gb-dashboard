@@ -11,7 +11,7 @@ module Github
     end
 
     def total_pr_count
-      recent_repos.map { |repo| repo[:open_prs_count] }.inject(:+)
+      recent_repos.map { |repo| repo[:open_prs_count] }.reduce(:+)
     end
 
     def recent_repos
